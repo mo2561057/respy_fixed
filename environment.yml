@@ -9,7 +9,6 @@ dependencies:
   - numpy
   - pandas
   - statsmodels
-  - estimagic>=0.0.9
   - pytest
   - pytest-cov
   - pytest-xdist
@@ -21,3 +20,4 @@ dependencies:
   - pip:
       - pre-commit
       - respy
+      - estimagic>=0.0.9
