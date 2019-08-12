@@ -1,0 +1,21 @@
+name: ov_respy
+
+channels:
+  - defaults
+  - conda-forge
+
+dependencies:
+  - python=3.6
+  - numpy
+  - pandas
+  - statsmodels
+  - pytest
+  - pytest-cov
+  - pytest-xdist
+  - scipy
+  - flake8
+  - pyyaml
+  - codecov
+  - pip
+  - pip:
+      - pre-commit
