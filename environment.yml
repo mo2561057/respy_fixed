@@ -1,23 +1,34 @@
 name: ov_respy
-
 channels:
+  - numba
   - defaults
   - conda-forge
-
+  - janosg
 dependencies:
-  - python=3.6
-  - numpy
-  - pandas
-  - statsmodels
+  - python=3.7.3
+  - pip
+  - click
+  - respy
+  - codecov
+  - doc8
+  - deepdiff
+  - estimagic>=0.0.9
+  - jupyterlab
+  - matplotlib>=3.0.0
+  - mkl
+  - nbsphinx=0.4.2
+  - numba>=0.43.1
+  - numpydoc
+  - pandas>=0.24
+  - pyaml
   - pytest
   - pytest-cov
   - pytest-xdist
-  - scipy
-  - flake8
-  - pyyaml
-  - codecov
-  - pip
+  - restructuredtext_lint
+  - scipy>=1.2.1
+  - Sphinx>=2.0.0
+  - sphinx-autobuild
+  - tox-conda
   - pip:
-      - pre-commit
-      - respy
-      - estimagic>=0.0.9
+    - apprise
+    - pre-commit

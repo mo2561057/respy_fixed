@@ -1,0 +1,52 @@
+category,name,value,lower,upper,comment
+delta,delta,0.926,0.7,1,discount factor
+wage_a,constant,"11.208202053369439
+",,,log of rental price if the base skill endowment of type 1 is normalized to 0 (wage)
+wage_a,exp_edu,0.09751335867832,,,linear return to an additional year of schooling (wage)
+wage_a,exp_a,0.018614181282294,,,"return to experience, same sector, linear (wage)"
+wage_a,exp_a_square,-0.029874125213061,,,"return to experience, same sector, quadratic (divided by 100) (wage)"
+wage_a,hs_graduate,0.039423863168125,,,skill premium of having finished high school (wage)
+wage_a,co_graduate,0.030096500914825,,,skill premium of having finished college (wage)
+wage_a,period,0.000604371633589,,,linear age effect (wage)
+wage_a,is_minor,0,,,effect of being a minor (wage)
+wage_a,any_exp_a,0.102604480018636,,,gain of having worked in the same occupation at least once before (wage)
+wage_a,work_a_lagged,0.316817020463839,,,gain of remaining in the same occupation as previous period (wage)
+nonpec_a,constant,35975.47736262,,,constant (non pecuniary)
+nonpec_a,not_exp_a_lagged,174807.5,,,reward of switching to a from other occupation (non pecuniary)
+nonpec_a,not_any_exp_a,34831.6657394996,,,reward of working in a for the first time (non pecuniary)
+nonpec_a,hs_graduate,-12008.3597730631,,,return to high school degree (non pecuniary)
+nonpec_a,co_graduate,48942.7003312365,,,return to college degree (non pecuniary)
+nonpec_edu,constant,-12095.4018739792,,,consumption value of school attendance for type 1
+nonpec_edu,is_return_not_high_school,-264622.915707175,,,reward for going back to college
+nonpec_edu,is_return_high_school,-230544.888455883,,,reward for going back to high school
+nonpec_edu,period,-7246.00680130132,,,linear age effect
+nonpec_edu,is_minor,0,,,effect of being a minor
+nonpec_edu,hs_graduate,-311327.1124,,,return to high school degree (non pecuniary)
+nonpec_edu,co_graduate,-96237.30478,,,return to college degree (non pecuniary)
+nonpec_home,constant,118298.619219975,,,mean value of non-market alternative for type 1
+nonpec_home,is_young_adult,0,,,additional value of staying home if aged 18-20
+nonpec_home,is_adult,5002.7296951872,,,additional value of staying home if 21 or older
+nonpec_home,hs_graduate,-12008.3597730631,,,return to high school degree (non pecuniary)
+nonpec_home,co_graduate,48942.7003312365,,,return to college degree (non pecuniary)
+shocks,sd_a,0.32,,,"Element 1,1 of cholesky factor of shock covariance matrix"
+shocks,sd_edu,238867.66,,,"Element 3,3 of cholesky factor of shock covariance matrix"
+shocks,sd_home,177719.485,,,"Element 4,4 of cholesky factor of shock covariance matrix"
+shocks,corr_edu_a,-0.171,,,"Element 3,1 of cholesky factor of shock covariance matrix"
+shocks,corr_home_a,-0.244,,,"Element 4,1 of cholesky factor of shock covariance matrix"
+shocks,corr_home_edu,-0.32,,,"Element 4,3 of cholesky factor of shock covariance matrix"
+meas_error,sd_a,3,0,,SD of the measurement error in wages in occupation a
+type_shift,type_2_in_a,0.176162183496461,,,deviation for type 2 from type 1 in a
+type_shift,type_2_in_edu,9662.72658608077,,,deviation for type 2 from type 1 in edu
+type_shift,type_2_in_home,-5137.07442709996,,,deviation for type 2 from type 1 in home
+type_shift,type_3_in_a,-0.520489768432775,,,deviation for type 3 from type 1 in a
+type_shift,type_3_in_edu,-46004.9478074528,,,deviation for type 3 from type 1 in edu
+type_shift,type_3_in_home,11954.1108369265,,,deviation for type 3 from type 1 in home
+type_shift,type_4_in_a,0.0667166199656,,,deviation for type 4 from type 1 in a
+type_shift,type_4_in_edu,-31343.5686946169,,,deviation for type 4 from type 1 in eu
+type_shift,type_4_in_home,-7246.49243985217,,,deviation for type 4 from type 1 in home
+type_2,up_to_nine_years_edu,0,,,effect of up to nine years of schooling on probability of being type 2
+type_2,at_least_ten_years_edu,0,,,effect of at least ten years of schooling on probability of being type 2
+type_3,up_to_nine_years_edu,0,,,effect of up to nine years of schooling on probability of being type 3
+type_3,at_least_ten_years_edu,0,,,effect of at least ten years of schooling on probability of being type 3
+type_4,up_to_nine_years_edu,0,,,effect of up to nine years of schooling on probability of being type 4
+type_4,at_least_ten_years_edu,0,,,effect of at least ten years of schooling on probability of being type 4
