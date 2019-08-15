@@ -9,6 +9,7 @@ estimation_seed: 500
 estimation_tau: 500
 interpolation_points: -1
 n_periods: 49
+n_types: 4
 simulation_agents: 5000
 simulation_seed: 132
 solution_draws: 5000
@@ -19,12 +20,13 @@ core_state_space_filters:
   - "period > 0 and exp_a == period and lagged_choice != 'a'"
   # In periods > 0, if agents always accumulated experience, lagged choice cannot be
   # non-experience choice.
-  - "period > 0 and exp_a  + exp_edu == period and lagged_choice == 'a'"
+  - "period > 0 and exp_a  + exp_edu == period and lagged_choice == 'home'"
   # In periods > 0, if agents accumulated no years of schooling, lagged choice cannot
   # be school.
   - "period > 0 and lagged_choice == 'edu' and exp_edu == 0"
   # If experience in choice 0 and 1 are zero, lagged choice cannot be this choice.
   - "lagged_choice == '{k}' and exp_{k} == 0"
+  -  "period == 0 and lagged_choice == 'a'"
 covariates:
   "not_exp_a_lagged": "exp_a > 0 and lagged_choice != 'a'"
   "work_a_lagged": "lagged_choice == 'a'"
@@ -36,9 +38,9 @@ covariates:
   "is_mandatory": "exp_edu < 9"
   "is_return_not_high_school": "~edu_lagged and ~hs_graduate"
   "is_return_high_school": "~edu_lagged and hs_graduate"
-  "is_minor": "period < 1"
-  "is_young_adult": "1 <= period <= 3"
-  "is_adult": "4 <= period"
+  "is_minor": "period < 0"
+  "is_young_adult": "0 <= period <= 2"
+  "is_adult": "3 <= period"
   "constant": "1"
   "exp_a_square": "exp_a ** 2 / 100"
   "up_to_nine_years_edu": "exp_edu <= 9"
