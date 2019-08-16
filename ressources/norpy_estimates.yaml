@@ -4,14 +4,14 @@ choices:
     start: [9]
     lagged: [1]
     share: [1]
-estimation_draws: 200
-estimation_seed: 500
+estimation_draws: 500
+estimation_seed: 132
 estimation_tau: 500
 interpolation_points: -1
 n_periods: 49
 n_types: 4
 simulation_agents: 5000
-simulation_seed: 132
+simulation_seed: 400
 solution_draws: 5000
 solution_seed: 456
 core_state_space_filters:

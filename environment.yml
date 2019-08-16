@@ -8,7 +8,6 @@ dependencies:
   - python=3.7.3
   - pip
   - click
-  - respy
   - codecov
   - doc8
   - deepdiff
@@ -32,3 +31,10 @@ dependencies:
   - pip:
     - apprise
     - pre-commit
+    - pysftp 
+    - Py-BOBYQA
+    - DFO-LS
+    - mpi4py
+    - PyPDF2
+    - jupyterlab
+    - pygraphviz

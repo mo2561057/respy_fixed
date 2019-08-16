@@ -25,7 +25,7 @@ nonpec_edu,hs_graduate,-311327.1124,,,return to high school degree (non pecuniar
 nonpec_edu,co_graduate,-96237.30478,,,return to college degree (non pecuniary)
 nonpec_home,constant,118298.619219975,,,mean value of non-market alternative for type 1
 nonpec_home,is_young_adult,0,,,additional value of staying home if aged 18-20
-nonpec_home,is_adult,5002.7296951872,,,additional value of staying home if 21 or older
+nonpec_home,period,5002.7296951872,,,additional value of staying home if 21 or older
 nonpec_home,hs_graduate,-12008.3597730631,,,return to high school degree (non pecuniary)
 nonpec_home,co_graduate,48942.7003312365,,,return to college degree (non pecuniary)
 shocks,sd_a,0.32,,,"Element 1,1 of cholesky factor of shock covariance matrix"
