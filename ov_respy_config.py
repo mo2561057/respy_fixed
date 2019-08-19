@@ -9,9 +9,7 @@ from pathlib import Path
 ROOT_DIR = Path(__file__).parent
 
 # Directory with additional resources for the testing harness
-TEST_RESOURCES_DIR = ROOT_DIR / "ressources"
-
-ORIGINAL_MOMENTS_DIR = ROOT_DIR / "estimation/resources"
+TEST_RESOURCES_DIR = ROOT_DIR / "resources"
 
 #Hard coded large integer
 HUGE_INT = 1000000000

@@ -1,16 +1,16 @@
 category,name,value,lower,upper,comment
 delta,delta,0.926,0.7,1,discount factor
 wage_a,constant,"11.208202053369439
-",,,log of rental price if the base skill endowment of type 1 is normalized to 0 (wage)
-wage_a,exp_edu,0.09751335867832,10.5,12.1,linear return to an additional year of schooling (wage)
-wage_a,exp_a,0.018614181282294,0,0.2,"return to experience, same sector, linear (wage)"
-wage_a,exp_a_square,-0.029874125213061,0,0.05,"return to experience, same sector, quadratic (divided by 100) (wage)"
-wage_a,hs_graduate,0.039423863168125,-0.04,0,skill premium of having finished high school (wage)
-wage_a,co_graduate,0.030096500914825,0,0.15,skill premium of having finished college (wage)
-wage_a,period,0.000604371633589,0,0.1,linear age effect (wage)
+",10.5,12.1,log of rental price if the base skill endowment of type 1 is normalized to 0 (wage)
+wage_a,exp_edu,0.09751335867832,0,0.2,linear return to an additional year of schooling (wage)
+wage_a,exp_a,0.018614181282294,0,0.05,"return to experience, same sector, linear (wage)"
+wage_a,exp_a_square,-0.029874125213061,-0.04,0,"return to experience, same sector, quadratic (divided by 100) (wage)"
+wage_a,hs_graduate,0.039423863168125,0,0.15,skill premium of having finished high school (wage)
+wage_a,co_graduate,0.030096500914825,0,0.1,skill premium of having finished college (wage)
+wage_a,period,0.000604371633589,-0.1,0.1,linear age effect (wage)
 wage_a,is_minor,0,,,effect of being a minor (wage)
-wage_a,any_exp_a,0.102604480018636,-0.1,0.1,gain of having worked in the same occupation at least once before (wage)
-wage_a,work_a_lagged,0.316817020463839,0,0.2,gain of remaining in the same occupation as previous period (wage)
+wage_a,any_exp_a,0.102604480018636,0,0.2,gain of having worked in the same occupation at least once before (wage)
+wage_a,work_a_lagged,0.316817020463839,0,0.5,gain of remaining in the same occupation as previous period (wage)
 nonpec_a,constant,35975.47736262,-100000,100000,constant (non pecuniary)
 nonpec_a,not_exp_a_lagged,-174807.5,-250000,100000,reward of switching to a from other occupation (non pecuniary)
 nonpec_a,not_any_exp_a,34831.6657394996,-100000,100000,reward of working in a for the first time (non pecuniary)
@@ -28,12 +28,12 @@ nonpec_home,is_young_adult,0,,,additional value of staying home if aged 18-20
 nonpec_home,period,5002.7296951872,1000,6000,additional value of staying home if 21 or older
 nonpec_home,hs_graduate,-12008.3597730631,,,return to high school degree (non pecuniary)
 nonpec_home,co_graduate,48942.7003312365,,,return to college degree (non pecuniary)
-shocks,sd_a,0.324808471527606,-10,10,"Element 1,1 of cholesky factor of shock covariance matrix"
-shocks,sd_edu,238867.66,-100000,100000,"Element 3,3 of cholesky factor of shock covariance matrix"
-shocks,sd_home,177719.485,-100000,100000,"Element 4,4 of cholesky factor of shock covariance matrix"
-shocks,corr_edu_a,-0.174985133531539,-100000,100000,"Element 3,1 of cholesky factor of shock covariance matrix"
-shocks,corr_home_a,-0.2440550585001,-100000000,1000000000,"Element 4,1 of cholesky factor of shock covariance matrix"
-shocks,corr_home_edu,-0.32384453552948,-100000,100000,"Element 4,3 of cholesky factor of shock covariance matrix"
+shocks,sd_a,0.324808471527606,-1,1,"Element 1,1 of cholesky factor of shock covariance matrix"
+shocks,sd_edu,238867.66,-1000000,1000000,"Element 3,3 of cholesky factor of shock covariance matrix"
+shocks,sd_home,177719.485,-1000000,1000000,"Element 4,4 of cholesky factor of shock covariance matrix"
+shocks,corr_edu_a,-9.37E-12,-1,1,"Element 3,1 of cholesky factor of shock covariance matrix"
+shocks,corr_home_a,-2.41E-11,-1,10,"Element 4,1 of cholesky factor of shock covariance matrix"
+shocks,corr_home_edu,-4.24E-17,-1,1,"Element 4,3 of cholesky factor of shock covariance matrix"
 meas_error,sd_a,0,0,,SD of the measurement error in wages in occupation a
 type_shift,type_2_in_a,0.176162183496461,-1,1,deviation for type 2 from type 1 in a
 type_shift,type_2_in_edu,9662.72658608077,-100000,100000,deviation for type 2 from type 1 in edu
@@ -44,9 +44,9 @@ type_shift,type_3_in_home,11954.1108369265,-100000,100000,deviation for type 3 f
 type_shift,type_4_in_a,0.0667166199656,-1,1,deviation for type 4 from type 1 in a
 type_shift,type_4_in_edu,-31343.5686946169,-100000,100000,deviation for type 4 from type 1 in eu
 type_shift,type_4_in_home,-7246.49243985217,-100000,100000,deviation for type 4 from type 1 in home
-type_2,up_to_nine_years_edu,0.083296202210043,0,1,effect of up to nine years of schooling on probability of being type 2
+type_2,up_to_nine_years_edu,0.083296202210043,-1,1,effect of up to nine years of schooling on probability of being type 2
 type_2,at_least_ten_years_edu,0,0,1,effect of at least ten years of schooling on probability of being type 2
-type_3,up_to_nine_years_edu,-1.16635181555243,0,1,effect of up to nine years of schooling on probability of being type 3
+type_3,up_to_nine_years_edu,-1.16635181555243,-2,1,effect of up to nine years of schooling on probability of being type 3
 type_3,at_least_ten_years_edu,0,0,1,effect of at least ten years of schooling on probability of being type 3
-type_4,up_to_nine_years_edu,0.560420764935477,0,1,effect of up to nine years of schooling on probability of being type 4
+type_4,up_to_nine_years_edu,0.560420764935477,-1,1,effect of up to nine years of schooling on probability of being type 4
 type_4,at_least_ten_years_edu,0,0,1,effect of at least ten years of schooling on probability of being type 4
