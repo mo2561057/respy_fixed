@@ -51,8 +51,9 @@ class StateSpace:
             (options["n_periods"], options["solution_draws"], len(options["choices"])),
             options["solution_seed"],
         )
-
+       
         states_df, self.indexer = _create_state_space(options)
+        
 
         _states_df = states_df.copy()
         _states_df.lagged_choice = _states_df.lagged_choice.cat.codes
@@ -312,6 +313,7 @@ def _create_core_state_space_per_period(
 
 def _add_lagged_choice_to_core_state_space(df, options):
     container = []
+    
     for choice in options["choices"]:
         df_ = df.copy()
         df_["lagged_choice"] = choice
@@ -346,18 +348,22 @@ def _filter_core_state_space(df, options):
             for i in options["choices_w_exp"]:
                 df = df.loc[~df.eval(definition.format(i=i))]
 
+
         # If "{j}" is in definition, loop over choices without experiences.
         elif "{j}" in definition:
             for j in options["choices_wo_exp"]:
                 df = df.loc[~df.eval(definition.format(j=j))]
+
 
         # If "{k}" is in definition, loop over choices with wage.
         elif "{k}" in definition:
             for k in options["choices_w_wage"]:
                 df = df.loc[~df.eval(definition.format(k=k))]
 
+
         else:
             df = df.loc[~df.eval(definition)]
+
 
     return df
 

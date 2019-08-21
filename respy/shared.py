@@ -17,7 +17,7 @@ from respy.config import TEST_RESOURCES_DIR
 @njit
 def aggregate_keane_wolpin_utility(
     wage, nonpec, continuation_value, draw, delta, is_inadmissible
-):
+):  
     flow_utility = wage * draw + nonpec
     value_function = flow_utility + delta * continuation_value
 

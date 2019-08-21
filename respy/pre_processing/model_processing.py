@@ -17,6 +17,7 @@ warnings.simplefilter("error", category=pd.errors.PerformanceWarning)
 
 
 def process_params_and_options(params, options):
+
     params, optim_paras = _process_params(params)
 
     extended_options = _process_options(options, params)
@@ -28,7 +29,9 @@ def process_params_and_options(params, options):
 
 
 def _process_params(params):
+
     params = _read_params(params)
+
     optim_paras = _parse_parameters(params)
 
     return params, optim_paras
@@ -178,7 +181,7 @@ def _parse_parameters(params):
 
     for quantity in params.index.get_level_values("category").unique():
         optim_paras[quantity] = params.loc[quantity].to_numpy()
-
+   
     cov = sdcorr_params_to_matrix(optim_paras["shocks"])
     optim_paras["shocks_cholesky"] = np.linalg.cholesky(cov)
     optim_paras.pop("shocks")

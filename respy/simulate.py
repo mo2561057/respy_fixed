@@ -36,20 +36,21 @@ def get_simulate_func(params, options):
         Simulation function where all arguments except the parameter vector are set.
 
     """
+    
     params, optim_paras, options = process_params_and_options(params, options)
-
+    
     state_space = StateSpace(params, options)
-
+    
     base_draws_sim = create_base_draws(
         (options["n_periods"], options["simulation_agents"], len(options["choices"])),
         options["simulation_seed"],
     )
-
+    
     # ``seed + 1`` ensures that draws for wages are different than for simulation.
     base_draws_wage = create_base_draws(
         base_draws_sim.shape, seed=options["simulation_seed"] + 1
     )
-
+    
     simulate_function = functools.partial(
         simulate,
         base_draws_sim=base_draws_sim,
@@ -57,7 +58,7 @@ def get_simulate_func(params, options):
         state_space=state_space,
         options=options,
     )
-
+    
     return simulate_function
 
 
@@ -182,6 +183,7 @@ def simulate_data(state_space, base_draws_sim, base_draws_wage, optim_paras, opt
             state_space.is_inadmissible[ks],
         )
         value_functions = value_functions.reshape(-1, n_choices)
+
         flow_utilities = flow_utilities.reshape(-1, n_choices)
 
         # We need to ensure that no individual chooses an inadmissible state. This
@@ -195,8 +197,8 @@ def simulate_data(state_space, base_draws_sim, base_draws_wage, optim_paras, opt
 
         # Determine optimal choice.
         choice = np.argmax(value_functions, axis=1)
-
-        wages = state_space.wages[ks] * draws_shock * draws_wage
+        #wages = state_space.wages[ks] * draws_shock * draws_wage
+        wages = state_space.wages[ks] * draws_shock
         wages[:, n_wages:] = np.nan
         wage = np.choose(choice, wages.T)
 
@@ -241,16 +243,19 @@ def simulate_data(state_space, base_draws_sim, base_draws_wage, optim_paras, opt
 
 def _get_random_types(states, optim_paras, options):
     """Get random types for simulated agents."""
+    
     if options["n_types"] == 1:
+        
         types = np.zeros(options["simulation_agents"])
     else:
+        
         type_covariates = create_type_covariates(states, options)
-
+        
         probs = predict_multinomial_logit(optim_paras["type_prob"], type_covariates)
-
+        
         np.random.seed(options["simulation_seed"])
         types = _random_choice(options["n_types"], probs)
-
+        
     return types
 
 
