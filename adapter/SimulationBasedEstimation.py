@@ -94,7 +94,6 @@ class SimulationBasedEstimationCls:
         self._logging_smm(stats_obs, stats_sim)
         self.num_evals = self.num_evals + 1
 
-        print("Plankreuz Ende")
         print(fval)
         return fval
 
