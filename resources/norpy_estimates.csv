@@ -28,14 +28,14 @@ nonpec_home,is_young_adult,0,,,additional value of staying home if aged 18-20
 nonpec_home,period,5002.7296951872,1000,6000,additional value of staying home if 21 or older
 nonpec_home,hs_graduate,-12008.3597730631,,,return to high school degree (non pecuniary)
 nonpec_home,co_graduate,48942.7003312365,,,return to college degree (non pecuniary)
-shocks,sd_a,0.324808471527606,-1,1,"Element 1,1 of cholesky factor of shock covariance matrix"
-shocks,sd_edu,238867.66,-1000000,1000000,"Element 3,3 of cholesky factor of shock covariance matrix"
-shocks,sd_home,177719.485,-1000000,1000000,"Element 4,4 of cholesky factor of shock covariance matrix"
-shocks,corr_edu_a,-9.37E-12,-1,1,"Element 3,1 of cholesky factor of shock covariance matrix"
-shocks,corr_home_a,-2.41E-11,-1,10,"Element 4,1 of cholesky factor of shock covariance matrix"
-shocks,corr_home_edu,-4.24E-17,-1,1,"Element 4,3 of cholesky factor of shock covariance matrix"
-meas_error,sd_a,0,0,,SD of the measurement error in wages in occupation a
-type_shift,type_2_in_a,0.176162183496461,-1,1,deviation for type 2 from type 1 in a
+shocks,sd_a,1,,,"Element 1,1 of cholesky factor of shock covariance matrix"
+shocks,sd_edu,1,,,"Element 3,3 of cholesky factor of shock covariance matrix"
+shocks,sd_home,1,,,"Element 4,4 of cholesky factor of shock covariance matrix"
+shocks,corr_edu_a,0,,,"Element 3,1 of cholesky factor of shock covariance matrix"
+shocks,corr_home_a,0,,,"Element 4,1 of cholesky factor of shock covariance matrix"
+shocks,corr_home_edu,0,,,"Element 4,3 of cholesky factor of shock covariance matrix"
+meas_error,sd_a,0,,,SD of the measurement error in wages in occupation a
+type_shift,type_2_in_a,0.176162183496461,,,deviation for type 2 from type 1 in a
 type_shift,type_2_in_edu,9662.72658608077,-100000,100000,deviation for type 2 from type 1 in edu
 type_shift,type_2_in_home,-5137.07442709996,-100000,100000,deviation for type 2 from type 1 in home
 type_shift,type_3_in_a,-0.520489768432775,-1,1,deviation for type 3 from type 1 in a

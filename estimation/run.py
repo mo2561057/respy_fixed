@@ -16,8 +16,7 @@ from estimation.smm_auxiliary import moments_final, weigthing_final
 from adapter.smm_utils import get_moments
 
 constraints_estimagic = [{"loc":"shocks",
-                          "type":"sdcorr",
-                          "case":"uncorrelated"},
+                          "type":"sdcorr"},
                          {"locs":[("nonpec_a","hs_graduate"),("nonpec_home","hs_graduate")],
                           "type":"pairwise_equality"},
                          {"locs":[("nonpec_a","co_graduate"),("nonpec_home","co_graduate")],
@@ -28,8 +27,7 @@ constraints_estimagic = [{"loc":"shocks",
                          {"loc": ("nonpec_home","is_young_adult"),"type": "fixed", "value": 0},
                          {"loc":("type_2","at_least_ten_years_edu"),"type": "fixed", "value": 0 },
                          {"loc": ("type_3", "at_least_ten_years_edu"), "type": "fixed", "value": 0},
-                         {"loc": ("type_4", "at_least_ten_years_edu"), "type": "fixed", "value": 0},
-
+                         {"loc": ("type_4", "at_least_ten_years_edu"), "type": "fixed", "value": 0}
                          ]
 
 #Import start values and model spec
@@ -37,6 +35,9 @@ options = yaml.safe_load((TEST_RESOURCES_DIR / f"norpy_estimates.yaml").read_tex
 params = pd.read_csv(
         TEST_RESOURCES_DIR / f"norpy_estimates.csv", index_col=["category", "name"]
     )
+params["lower"] = params["lower"].copy().replace(np.nan,-np.inf)
+params["upper"] = params["upper"].copy().replace(np.nan,np.inf)
+
 
 args = (params,
         options,

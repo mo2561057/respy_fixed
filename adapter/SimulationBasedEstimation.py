@@ -69,8 +69,6 @@ class SimulationBasedEstimationCls:
         if is_valid:
 
             stats_diff = np.array(stats_obs) - np.array(stats_sim)
-
-
             fval_intermed = np.dot(stats_diff, self.weighing_matrix)
 
             fval = float(np.dot(fval_intermed, stats_diff))
