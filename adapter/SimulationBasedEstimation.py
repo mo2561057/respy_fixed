@@ -20,7 +20,6 @@ class SimulationBasedEstimationCls:
         moments_obs,
         weighing_matrix,
         get_moments,
-        optim_params_loc,
         max_evals = HUGE_INT,
     ):
 
@@ -34,10 +33,8 @@ class SimulationBasedEstimationCls:
         self.get_moments = get_moments
         self.moments_obs = moments_obs
         self.max_evals = max_evals
-        self.optim_params_loc = optim_params_loc
         self.simulate_sample = None
         self.num_evals = 1
-
         self.relevant_coeffs_to_array()
 
 
@@ -45,10 +42,7 @@ class SimulationBasedEstimationCls:
         """This method evaluates the criterion function for a candidate parametrization proposed
         by the optimizer.
         we need to translate between the opt dataframe and the model dataframe"""
-        self.update_model_spec(self.params, free_params[2:])
-
-        self.add_common_components(self.params, free_params[:2])
-
+        self.update_model_spec(self.params, free_params)
         simulate = rp.get_simulate_func(self.params, self.options)
         array_sim = simulate(self.params)
 
@@ -125,25 +119,9 @@ class SimulationBasedEstimationCls:
         """
         out_params = params.copy()
         for x in list(out_params.index):
-            if x in list(free_params.index):
                 out_params.loc[x, "value"] = free_params.loc[x, "value"]
-            elif x == ("nonpec_edu","hs_graduate"):
-                out_params.loc[x,"value"] = params.loc[x,"value"] + free_params.loc[("common_reward","hs_graduate"),"value"]
-            elif x == ("nonpec_edu", "co_graduate"):
-                out_params.loc[x, "value"] = params.loc[x, "value"] + free_params.loc[
-                    ("common_reward", "co_graduate"), "value"]
-            elif "nonpec" in x[0] and "hs_graduate" in x[1]:
-                out_params.loc[x,"value"] = free_params.loc[("common_reward","hs_graduate"),"value"]
-            elif "nonpec" in x[0] and "co_graduate" in x[1]:
-                out_params.loc[x, "value"] = free_params.loc[("common_reward", "co_graduate"), "value"]
         self.params = out_params
 
     def relevant_coeffs_to_array(self):
         out = self.params.copy()
-        out.loc[("common_rewards","hs_graduate")] = out.loc[("nonpec_home","hs_graduate")]
-        out.loc[("common_rewards","co_graduate")] = out.loc[("nonpec_home","co_graduate")]
-        out.drop([("nonpec_home","hs_graduate"),
-                  ("nonpec_home","co_graduate"),
-                  ("nonpec_a","hs_graduate"),
-                  ("nonpec_a","co_graduate")])
-        self.free_params = out[["value","upper","lower","fixed"]]
+        self.free_params = out[["value","upper","lower"]]
