@@ -2,3 +2,7 @@
 	path = submodules/respy
 	url = https://github.com/OpenSourceEconomics/respy.git
 	branch = afqt
+[submodule "estimagic"]
+	path = submodules/estimagic
+	url = https://github.com/OpenSourceEconomics/estimagic.git
+	branch = master

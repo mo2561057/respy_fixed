@@ -7,12 +7,15 @@ import yaml
 import numpy as np
 import pandas as pd
 import pybobyqa
+import estimagic
 
 from adapter.SimulationBasedEstimation import SimulationBasedEstimationCls
 from ov_respy_config import TEST_RESOURCES_DIR
 from estimation.smm_auxiliary import moments_final, weigthing_final
 from adapter.smm_utils import get_moments
 
+constraints_estimagic = [{"loc":"shocks",
+                          "type":"sdcorr"}]
 #Specify non common params to optimize
 optim_paras_loc = [
     ("delta", "delta"),
@@ -92,4 +95,7 @@ kwargs["objfun_has_noise"] = True
 kwargs["maxfun"] = 10e6
 
 #rslt = adapter_smm.evaluate(adapter_smm.free_params)
-rslt = pybobyqa.solve(adapter_smm.evaluate, adapter_smm.free_params, **kwargs)
+rslt = estimagic.optimization.optimize.minimize(criterion = adapter_smm.evaluate,
+                          params = adapter_smm.free_params,
+                          algorithm = "nlopt_bobyqa",
+                          constraints = constraints_estimagic)

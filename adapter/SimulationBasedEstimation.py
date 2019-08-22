@@ -43,14 +43,8 @@ class SimulationBasedEstimationCls:
 
     def evaluate(self, free_params):
         """This method evaluates the criterion function for a candidate parametrization proposed
-        by the optimizer."""
-
-
-        assert np.all(np.isfinite(free_params))
-        if not is_valid_covariance_matrix(free_params[23:29]):
-            msg = 'invalid evaluation due to lack of proper covariance matrix'
-            return HUGE_INT
-
+        by the optimizer.
+        we need to translate between the opt dataframe and the model dataframe"""
         self.update_model_spec(self.params, free_params[2:])
 
         self.add_common_components(self.params, free_params[:2])
@@ -130,40 +124,26 @@ class SimulationBasedEstimationCls:
             free_params: np.array of all free paramters
         """
         out_params = params.copy()
-
-        optim_params_loc = self.optim_params_loc
-
-        for x in range(len(optim_params_loc)):
-            out_params.loc[optim_params_loc[x],"value"] = free_params[x]
-        self.params = out_params
-
-    def add_common_components(self, params, free_params):
-        """
-        This function updates the model object of the class instance.
-        ARGS:
-            free_params: np.array of all free paramters
-        """
-        out_params = params.copy()
-
-
-        optim_params_loc = self.optim_params_loc
-
-        for x in params.index:
-            if "hs_graduate" in x[1] and "nonpec" in x[0]:
-                if "edu" in x[0]:
-                    out_params.loc[x, "value"] = out_params.loc[x, "value"] + free_params[0]
-                else:
-                    out_params.loc[x, "value"] = free_params[0]
-
-            elif "co_graduate" in x[1] and "nonpec" in x[0]:
-                if "edu" in x[0]:
-                    out_params.loc[x, "value"] = out_params.loc[x, "value"] + free_params[1]
-                else:
-                    out_params.loc[x, "value"] = free_params[1]
-
+        for x in list(out_params.index):
+            if x in list(free_params.index):
+                out_params.loc[x, "value"] = free_params.loc[x, "value"]
+            elif x == ("nonpec_edu","hs_graduate"):
+                out_params.loc[x,"value"] = params.loc[x,"value"] + free_params.loc[("common_reward","hs_graduate"),"value"]
+            elif x == ("nonpec_edu", "co_graduate"):
+                out_params.loc[x, "value"] = params.loc[x, "value"] + free_params.loc[
+                    ("common_reward", "co_graduate"), "value"]
+            elif "nonpec" in x[0] and "hs_graduate" in x[1]:
+                out_params.loc[x,"value"] = free_params.loc[("common_reward","hs_graduate"),"value"]
+            elif "nonpec" in x[0] and "co_graduate" in x[1]:
+                out_params.loc[x, "value"] = free_params.loc[("common_reward", "co_graduate"), "value"]
         self.params = out_params
 
     def relevant_coeffs_to_array(self):
-        location = [("nonpec_a","hs_graduate"),("nonpec_a","co_graduate")] + self.optim_params_loc
-        self.free_params = np.array(list(self.params.loc[location,"value"]))
-
+        out = self.params.copy()
+        out.loc[("common_rewards","hs_graduate")] = out.loc[("nonpec_home","hs_graduate")]
+        out.loc[("common_rewards","co_graduate")] = out.loc[("nonpec_home","co_graduate")]
+        out.drop([("nonpec_home","hs_graduate"),
+                  ("nonpec_home","co_graduate"),
+                  ("nonpec_a","hs_graduate"),
+                  ("nonpec_a","co_graduate")])
+        self.free_params = out[["value","upper","lower","fixed"]]
