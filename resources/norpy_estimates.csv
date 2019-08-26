@@ -1,7 +1,6 @@
 category,name,value,lower,upper,comment
 delta,delta,0.926,0.7,1,discount factor
-wage_a,constant,"11.208202053369439
-",10.5,12.1,log of rental price if the base skill endowment of type 1 is normalized to 0 (wage)
+wage_a,constant,11.208202053369439,10.5,12.1,log of rental price if the base skill endowment of type 1 is normalized to 0 (wage)
 wage_a,exp_edu,0.09751335867832,0,0.2,linear return to an additional year of schooling (wage)
 wage_a,exp_a,0.018614181282294,0,0.05,"return to experience, same sector, linear (wage)"
 wage_a,exp_a_square,-0.029874125213061,-0.04,0,"return to experience, same sector, quadratic (divided by 100) (wage)"
@@ -11,11 +10,13 @@ wage_a,period,0.000604371633589,-0.1,0.1,linear age effect (wage)
 wage_a,is_minor,0,,,effect of being a minor (wage)
 wage_a,any_exp_a,0.102604480018636,0,0.2,gain of having worked in the same occupation at least once before (wage)
 wage_a,work_a_lagged,0.316817020463839,0,0.5,gain of remaining in the same occupation as previous period (wage)
+wage_a,afqt,0,,,impact of afqrt score on wage
 nonpec_a,constant,35975.47736262,-100000,100000,constant (non pecuniary)
 nonpec_a,not_exp_a_lagged,-174807.5,-250000,100000,reward of switching to a from other occupation (non pecuniary)
 nonpec_a,not_any_exp_a,34831.6657394996,-100000,100000,reward of working in a for the first time (non pecuniary)
 nonpec_a,hs_graduate,-12008.3597730631,,,return to high school degree (non pecuniary)
 nonpec_a,co_graduate,48942.7003312365,,,return to college degree (non pecuniary)
+nonpec_a,afqt,0,,,impact of afqt on nonpec work rewards
 nonpec_edu,constant,-12095.4018739792,-16000,-5000,consumption value of school attendance for type 1
 nonpec_edu,is_return_not_high_school,-264622.915707175,-300000,-100000,reward for going back to college
 nonpec_edu,is_return_high_school,-230544.888455883,-400000,20000,reward for going back to high school
@@ -23,11 +24,13 @@ nonpec_edu,period,-7246.00680130132,-300000,-1000,linear age effect
 nonpec_edu,is_minor,0,,,effect of being a minor
 nonpec_edu,hs_graduate,-311327.1124,-1000000,500000,return to high school degree (non pecuniary)
 nonpec_edu,co_graduate,-96237.30478,-1500000,1000,return to college degree (non pecuniary)
+nonpec_edu,afqt,0,,,impact of afqt on education rewards
 nonpec_home,constant,118298.619219975,0,250000,mean value of non-market alternative for type 1
 nonpec_home,is_young_adult,0,,,additional value of staying home if aged 18-20
 nonpec_home,period,5002.7296951872,1000,6000,additional value of staying home if 21 or older
 nonpec_home,hs_graduate,-12008.3597730631,,,return to high school degree (non pecuniary)
 nonpec_home,co_graduate,48942.7003312365,,,return to college degree (non pecuniary)
+nonepc_home, afqt,0,,,impact of afqt on home rewards 
 shocks,sd_a,1,,,"Element 1,1 of cholesky factor of shock covariance matrix"
 shocks,sd_edu,1,,,"Element 3,3 of cholesky factor of shock covariance matrix"
 shocks,sd_home,1,,,"Element 4,4 of cholesky factor of shock covariance matrix"
@@ -50,3 +53,6 @@ type_3,up_to_nine_years_edu,-1.16635181555243,-2,1,effect of up to nine years of
 type_3,at_least_ten_years_edu,0,0,1,effect of at least ten years of schooling on probability of being type 3
 type_4,up_to_nine_years_edu,0.560420764935477,-1,1,effect of up to nine years of schooling on probability of being type 4
 type_4,at_least_ten_years_edu,0,0,1,effect of at least ten years of schooling on probability of being type 4
+afqt,prob_afqt_1,0.33,0,1,probability of having a low afqt score 
+afqt,prob_afqt_2,0.33,0,1,probability of having a medium afqt score 
+afqt,prob_afqt_3,0.33,0,1,probability of having a high afqt score 

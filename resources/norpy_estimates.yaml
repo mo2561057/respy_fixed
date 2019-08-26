@@ -14,7 +14,8 @@ simulation_agents: 5000
 simulation_seed: 400
 solution_draws: 5000
 solution_seed: 456
-
+observables: 
+ afqt: 3
 core_state_space_filters:
   # In periods > 0, if agents accumulated experience only in one choice, lagged choice
   # cannot be different.
@@ -46,5 +47,6 @@ covariates:
   "exp_a_square": "exp_a ** 2 / 100"
   "up_to_nine_years_edu": "exp_edu <= 9"
   "at_least_ten_years_edu": "exp_edu >= 10"
+  
   
   

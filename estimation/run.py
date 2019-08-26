@@ -7,6 +7,7 @@ import yaml
 import numpy as np
 import pandas as pd
 import pybobyqa
+import respy as rp
 
 #Be careful with paths there is something convoluted !
 from submodules.estimagic.estimagic.optimization.optimize import minimize
@@ -35,6 +36,8 @@ options = yaml.safe_load((TEST_RESOURCES_DIR / f"norpy_estimates.yaml").read_tex
 params = pd.read_csv(
         TEST_RESOURCES_DIR / f"norpy_estimates.csv", index_col=["category", "name"]
     )
+
+#Sgouldnt that be dealt of within the package ?
 params["lower"] = params["lower"].copy().replace(np.nan,-np.inf)
 params["upper"] = params["upper"].copy().replace(np.nan,np.inf)
 
@@ -48,9 +51,15 @@ args = (params,
 
 adapter_smm = SimulationBasedEstimationCls(*args)
 
+#Simulate the data with  the specified coefficeints
+simulate = rp.get_simulate_func(params, options)
+df = simulate(params)
+moments = pd.DataFrame(dict(get_moments(df)))
+
 #Specify variables for the optimization
 #rslt = adapter_smm.evaluate(adapter_smm.free_params)
-rslt = minimize(criterion = adapter_smm.evaluate,
-                          params = adapter_smm.free_params,
-                          algorithm = "nlopt_bobyqa",
-                          constraints = constraints_estimagic)
+#rslt = minimize(criterion = adapter_smm.evaluate,
+#                          params = adapter_smm.free_params,
+#                          algorithm = "nlopt_bobyqa",
+#                          constraints = constraints_estimagic,
+#                          dashboard = True)

@@ -42,12 +42,12 @@ class SimulationBasedEstimationCls:
         """This method evaluates the criterion function for a candidate parametrization proposed
         by the optimizer.
         we need to translate between the opt dataframe and the model dataframe"""
+        print("Hallo")
         self.update_model_spec(self.params, free_params)
         simulate = rp.get_simulate_func(self.params, self.options)
         array_sim = simulate(self.params)
 
         self.moments_sim = self.get_moments(array_sim)
-        print(self.moments_sim)
         stats_obs, stats_sim = [], []
 
         for group in self.moments_sim.keys():
@@ -64,23 +64,23 @@ class SimulationBasedEstimationCls:
             len(stats_obs) == len(stats_sim) == len(np.diag(self.weighing_matrix))
         )
 
-        print(stats_obs)
 
         if is_valid:
-
+            print(stats_obs)
+            print(stats_sim)
             stats_diff = np.array(stats_obs) - np.array(stats_sim)
+            print(stats_diff)
             fval_intermed = np.dot(stats_diff, self.weighing_matrix)
-
+            print(fval_intermed)
             fval = float(np.dot(fval_intermed, stats_diff))
-
+            print(fval)
         else:
             fval = HUGE_INT
 
 
+
         self._logging_smm(stats_obs, stats_sim)
         self.num_evals = self.num_evals + 1
-
-        print(fval)
         return fval
 
     def _logging_smm(self, stats_obs, stats_sim):
