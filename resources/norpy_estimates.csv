@@ -30,7 +30,7 @@ nonpec_home,is_young_adult,0,,,additional value of staying home if aged 18-20
 nonpec_home,period,5002.7296951872,1000,6000,additional value of staying home if 21 or older
 nonpec_home,hs_graduate,-12008.3597730631,,,return to high school degree (non pecuniary)
 nonpec_home,co_graduate,48942.7003312365,,,return to college degree (non pecuniary)
-nonepc_home, afqt,0,,,impact of afqt on home rewards 
+nonpec_home,afqt,0,,,impact of afqt on home rewards 
 shocks,sd_a,1,,,"Element 1,1 of cholesky factor of shock covariance matrix"
 shocks,sd_edu,1,,,"Element 3,3 of cholesky factor of shock covariance matrix"
 shocks,sd_home,1,,,"Element 4,4 of cholesky factor of shock covariance matrix"
@@ -53,6 +53,6 @@ type_3,up_to_nine_years_edu,-1.16635181555243,-2,1,effect of up to nine years of
 type_3,at_least_ten_years_edu,0,0,1,effect of at least ten years of schooling on probability of being type 3
 type_4,up_to_nine_years_edu,0.560420764935477,-1,1,effect of up to nine years of schooling on probability of being type 4
 type_4,at_least_ten_years_edu,0,0,1,effect of at least ten years of schooling on probability of being type 4
-afqt,prob_afqt_1,0.33,0,1,probability of having a low afqt score 
-afqt,prob_afqt_2,0.33,0,1,probability of having a medium afqt score 
-afqt,prob_afqt_3,0.33,0,1,probability of having a high afqt score 
+afqt,prob_afqt_1,0.3333333,0,1,probability of having a low afqt score 
+afqt,prob_afqt_2,0.3333333,0,1,probability of having a medium afqt score 
+afqt,prob_afqt_3,0.3333333,0,1,probability of having a high afqt score 

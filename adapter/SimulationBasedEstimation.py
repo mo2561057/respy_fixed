@@ -42,7 +42,6 @@ class SimulationBasedEstimationCls:
         """This method evaluates the criterion function for a candidate parametrization proposed
         by the optimizer.
         we need to translate between the opt dataframe and the model dataframe"""
-        print("Hallo")
         self.update_model_spec(self.params, free_params)
         simulate = rp.get_simulate_func(self.params, self.options)
         array_sim = simulate(self.params)

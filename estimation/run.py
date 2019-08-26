@@ -37,6 +37,10 @@ params = pd.read_csv(
         TEST_RESOURCES_DIR / f"norpy_estimates.csv", index_col=["category", "name"]
     )
 
+#Get rid of weird string values
+for x in params["value"]:
+    x = float(x)
+
 #Sgouldnt that be dealt of within the package ?
 params["lower"] = params["lower"].copy().replace(np.nan,-np.inf)
 params["upper"] = params["upper"].copy().replace(np.nan,np.inf)
@@ -52,6 +56,7 @@ args = (params,
 adapter_smm = SimulationBasedEstimationCls(*args)
 
 #Simulate the data with  the specified coefficeints
+
 simulate = rp.get_simulate_func(params, options)
 df = simulate(params)
 moments = pd.DataFrame(dict(get_moments(df)))
